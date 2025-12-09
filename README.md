@@ -1,147 +1,118 @@
- #Mind Mend App
+Mind Mend App
 
-A modern mental-wellness companion built with React, TypeScript, Vite, Tailwind CSS, shadcn-ui, Supabase, and AI-powered mood analysis. [web:59][web:55]
+A modern mental wellness companion built using React, TypeScript, Vite, Tailwind, shadcn-ui, Supabase, and AI-powered mood analysis.
 
----
+🚀 Features
 
-## 🧠 Overview
+Mood tracking
 
-Mind Mend helps users track their mood, journal their thoughts, and receive AI-generated insights to better understand their emotional patterns. [web:30]  
-The app uses Supabase for authentication, data storage, and edge functions, combined with Gemini for AI-driven mood analysis. [web:59][web:60]
+Journaling system
 
----
+AI-generated suggestions (Gemini-based)
 
-## 🛠 Tech Stack
+Supabase Authentication
 
-- Vite  
-- React + TypeScript  
-- Tailwind CSS  
-- shadcn-ui  
-- Supabase (Auth, Database, Edge Functions)  
-- Gemini / AI Integration [web:55][web:59][web:60]
+Supabase Database + Edge Functions
 
----
+Clean UI with Tailwind + shadcn-ui
 
-## 🚀 Getting Started
+Fully responsive
 
-### 1. Clone the repository
+🛠 Tech Stack
 
+Frontend: React, TypeScript, Vite
+
+Styling: Tailwind CSS, shadcn-ui
+
+Backend: Supabase (Auth, Postgres, Edge Functions)
+
+AI: Gemini API (custom Edge functions)
+
+📦 Installation & Setup
+1️⃣ Clone the repository
 git clone https://github.com/Harsha-v-r/Mind-Mend-App.git
+
+2️⃣ Navigate into the project folder
 cd Mind-Mend-App
 
-text
-
-### 2. Install dependencies
-
+3️⃣ Install dependencies
 npm install
 
-text
-
-### 3. Start the development server
-
+4️⃣ Start development server
 npm run dev
 
-text
+🔑 Environment Variables
 
----
-
-## 🔑 Environment Variables
-
-Create a `.env.local` file in the project root and add:
+Create a file named .env.local in the project root:
 
 VITE_SUPABASE_URL=""
 VITE_SUPABASE_PUBLISHABLE_KEY=""
 SUPABASE_SERVICE_ROLE_KEY=""
 GEMINI_API_KEY=""
 
-text
 
-> ⚠️ Do **NOT** commit `.env.local` to GitHub. [web:59]
+⚠️ Do NOT commit .env.local to GitHub.
 
----
+🌐 Deployment (Vercel)
 
-## 🌐 Deployment (Vercel)
+Go to https://vercel.com
 
-1. Go to https://vercel.com  
-2. Import this repository  
-3. Add all required environment variables from `.env.local` in the Vercel dashboard  
-4. Set **Build Command**:
+Import this repository
+
+Add all environment variables from .env.local
+
+Build command:
 
 npm run build
 
-text
 
-5. Set **Output Directory**:
+Output directory:
 
 dist
 
-text
 
-6. Deploy the project. [web:58][web:59]
+Deploy 🚀
 
----
-
-## 📁 Core Features
-
-- Mood tracking  
-- Journaling  
-- AI-generated mood suggestions  
-- Supabase authentication  
-- Mood history  
-- Edge Function–based AI processing  
-- Responsive UI for mobile and desktop [web:30][web:59]
-
----
-
-## 🧩 Editing the Project
-
-### Using VS Code / Local Git
-
-git add .
-git commit -m "your message"
-git push
-
-text
-
-### Using GitHub Web
-
-- Open any file  
-- Click the ✏️ **Edit** icon  
-- Commit your changes to the desired branch
-
-### Using GitHub Codespaces
-
-- Open the repo on GitHub  
-- Click **Code → Codespaces → Create**  
-- Edit, run, and debug directly in the browser
-
----
-
-## 📂 Folder Structure (Simplified)
-
+📁 Project Structure
 Mind-Mend-App/
 │
 ├── src/
-│ ├── components/
-│ ├── pages/
-│ ├── hooks/
-│ ├── lib/
-│ └── styles/
+│   ├── components/
+│   ├── pages/
+│   ├── hooks/
+│   ├── lib/
+│   └── styles/
 │
 ├── supabase/
-│ ├── migrations/
-│ └── functions/
+│   ├── migrations/
+│   └── functions/
 │
 ├── public/
 ├── package.json
-├── vite.config.ts
 └── README.md
 
-text
+🧑‍💻 Contributing
 
----
+Fork the repo
 
-## 📝 License
+Create a new branch:
 
-This project is owned by **Harsha-v-r**.  
-Please refer to the repository for licensing details or contact the owner for permissions. [web:51]
+git checkout -b my-feature
+
+
+Commit changes:
+
+git commit -m "Add new feature"
+
+
+Push:
+
+git push origin my-feature
+
+
+Create a Pull Request
+
+📜 License
+
+This project is maintained and owned by Harsha-v-r.
+Feel free to fork or contribute if allowed.
