@@ -23,31 +23,35 @@ const Auth = () => {
 
     try {
       if (isLogin) {
-        // Login with username (we'll query profiles to get the username)
-        const { data: profile } = await supabase
-          .from("profiles")
-          .select("username")
-          .eq("username", username)
-          .single();
-
-        if (!profile) {
-          toast.error("Username not found");
-          setLoading(false);
-          return;
+        // --- FIX STARTS HERE ---
+        // 1. Construct the email directly (skip checking 'profiles' table first)
+        const trimmedUsername = username.trim().toLowerCase();
+        if (!trimmedUsername) {
+            toast.error("Please enter your username");
+            setLoading(false);
+            return;
         }
 
-        // Use the username as email for authentication (same format as signup)
-        const email = `${profile.username.toLowerCase()}@mindmend.app`;
+        const email = `${trimmedUsername}@mindmend.app`;
+
+        // 2. Attempt login directly against Supabase Auth
         const { error } = await supabase.auth.signInWithPassword({
           email,
           password,
         });
 
-        if (error) throw error;
+        if (error) {
+           // This handles "Invalid login credentials" or "Email not confirmed"
+           console.error("Login error:", error.message);
+           throw new Error("Invalid username or password");
+        }
+
         toast.success("Welcome back! 💜");
         navigate("/dashboard");
+        // --- FIX ENDS HERE ---
+
       } else {
-        // Signup
+        // Signup Logic
         if (!name.trim()) {
           toast.error("Name is required");
           setLoading(false);
@@ -81,7 +85,8 @@ const Auth = () => {
           return;
         }
 
-        // Check if username exists
+        // Optional: Check if username exists in profiles to give a nice error message
+        // (If profiles table is empty, this returns null, which is fine for signup)
         const { data: existingProfile } = await supabase
           .from("profiles")
           .select("username")
@@ -97,7 +102,7 @@ const Auth = () => {
         // Create a unique email from username
         const tempEmail = `${finalUsername.toLowerCase()}@mindmend.app`;
         
-        const { data: authData, error } = await supabase.auth.signUp({
+        const { error } = await supabase.auth.signUp({
           email: tempEmail,
           password,
           options: {
@@ -105,6 +110,7 @@ const Auth = () => {
               username: finalUsername,
               name: name,
             },
+            // Since you disabled email confirmation, this redirect might happen immediately
             emailRedirectTo: `${window.location.origin}/dashboard`,
           },
         });
@@ -112,6 +118,9 @@ const Auth = () => {
         if (error) throw error;
         
         toast.success("Account created! Welcome to Mind Mend 🌸");
+        
+        // If email confirmation is off, we can try to redirect immediately, 
+        // or let the user login. Usually, auto-login happens on signup if confirm is off.
         navigate("/dashboard");
       }
     } catch (error: any) {
